@@ -1,0 +1,184 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: parameters_chat.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+
+framework:
+    translator:
+        fallback: %locale%
+    #esi:             ~
+    #translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ ]
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver:   "%database_driver%"
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                charset:  UTF8
+            jabber:
+                driver:   "%database_driver2%"
+                host:     "%database_host2%"
+                port:     "%database_port2%"
+                dbname:   "%database_name2%"
+                user:     "%database_user2%"
+                password: "%database_password2%"
+                charset:  UTF8
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+#                    AppUserBundle:  ~
+#                    AppInterestsBundle: ~
+#                    AppAdminBundle: ~
+#                    AppCronTaskBundle: ~
+                    ErmineAppUserBundle:  ~
+                    ErmineAppFilesBundle:  ~
+            jabber:
+                connection: jabber
+                mappings:
+#                    AppJabberBundle: ~
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            xml: true
+            json : true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        default_format: json
+
+# API key
+services:
+    apikey_authenticator:
+        class:     AppBundle\Security\ApiKeyAuthenticator
+        arguments: ["@api_key_user_provider", "@app_session_repository", "@app_request_manager_service"]
+
+    api_key_user_provider:
+        class: AppBundle\Security\ApiKeyUserProvider
+        arguments: ["@app_user_repository", "@app_session_repository"]
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path:
+              web_root: %kernel.root_dir%/../web/
+              cache_prefix: media/cache
+
+    loaders:
+        default:
+            filesystem:
+                data_root: %kernel.root_dir%/../web/
+    driver:               gd
+    resolvers:
+        default:
+            web_path: ~
+
+    filter_sets:
+        cache: ~
+#User
+        filter_236_236:
+            quality: 75
+            filters:
+                thumbnail: { size: [236, 236], mode: outbound }
+
+        filter_25_25:
+            quality: 75
+            filters:
+                thumbnail: { size: [25, 25], mode: outbound }
+
+#        Test if picture to small - increase it
+
+        user_test:
+            quality:
+            filters:
+                upscale: { min: [236, 236] }
+
+        default_test:
+            quality:
+            filters:
+                upscale: { min: [1000, 1000] }
+
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        # Your other blocks
+
+sonata_admin:
+    security:
+        handler: sonata.admin.security.handler.role
+
+    title:  Admin
+    title_logo: /bundles/ermineappuser/images/logo.png
+    templates:
+        layout: ErmineAppAdminBundle:Admin:standard_layout.html.twig
+#        show: ErmineAppAdminBundle:Admin:show.html.twig
+        dashboard: ErmineAppAdminBundle:Admin:dashboard.html.twig
+
+doctrine_migrations:
+    table_name: MigrationVersions

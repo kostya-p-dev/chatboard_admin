@@ -1,0 +1,55 @@
+# you can read more about security in the related section of the documentation
+# http://symfony.com/doc/current/book/security.html
+security:
+    # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
+    encoders:
+        ErmineApp\UserBundle\Entity\User:
+            algorithm: bcrypt
+
+    # http://symfony.com/doc/current/book/security.html#hierarchical-roles
+#    role_hierarchy:
+#        ROLE_ADMIN:       ROLE_ADMIN
+#        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_USER, ROLE_ADMIN]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_SONATA_ADMIN]
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        api_key_user_provider:
+            id: api_key_user_provider
+        our_db_provider:
+            entity:
+                class: ErmineAppUserBundle:User
+                property: username
+
+    firewalls:
+        api:
+            pattern: ^/(api)(?!/register)(?!/login)
+            provider: api_key_user_provider
+            stateless: true
+            simple_preauth:
+                authenticator: apikey_authenticator
+        login_firewall:
+            pattern:   ^/login$
+            anonymous: ~
+        register_firewall:
+            pattern:   ^/register$
+            anonymous: ~
+        register_firewall:
+            pattern:   ^/home$
+            anonymous: ~
+        secured_area:
+            provider: our_db_provider
+            pattern:    ^/
+            form_login: ~
+            logout:
+                path:   /logout
+                target: /
+            anonymous:  ~
+
+
+    access_control:
+#        - { path: ^/api/register, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/admin/, role: [ ROLE_SUPER_ADMIN, ROLE_ADMIN] }

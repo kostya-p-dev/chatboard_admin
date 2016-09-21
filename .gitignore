@@ -10,7 +10,7 @@
 !/app/config/routing.yml
 !/app/config/security.yml
 !/app/config/services.yml
-/app/config/*
+#/app/config/*
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
