@@ -1,0 +1,3 @@
+ermine_app_social_nets_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ErmineAppSocialNetsBundle:Default:index }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="ErmineApp\UserBundle\Entity\SessionRepository" name="ErmineApp\UserBundle\Entity\Session" >
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="createdAt" type="datetime" column="created_at"/>
+    <field name="expiredAt" type="datetime" column="expired_at"/>
+    <field name="restToken" type="string" column="rest_token" length="255"/>
+    <field name="socToken" type="string" column="soc_token" length="255" nullable="true"/>
+    <field name="socSecret" type="string" column="soc_secret" length="255" nullable="true"/>
+    <many-to-one field="user" target-entity="ErmineApp\UserBundle\Entity\User"/>
+  </entity>
+</doctrine-mapping>

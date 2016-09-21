@@ -1,0 +1,12 @@
+services:
+    files_manager:
+        class: ErmineApp\FilesBundle\Service\FilesManager
+        arguments:
+            - @service_container
+
+    app_files_repository:
+        class: ErmineApp\FilesBundle\Entity\FilesRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+          - 'ErmineAppFilesBundle:Files'

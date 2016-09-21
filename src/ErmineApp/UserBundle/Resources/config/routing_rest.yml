@@ -1,0 +1,35 @@
+api_post_register_pass:
+    type: rest
+    resource:     "ErmineAppUserBundle:UserRest"
+    param: { action: postRegisterPass }
+    name_prefix:  api_
+
+
+
+api_post_register_twitter:
+    type: rest
+    resource:     "ErmineAppUserBundle:UserRest"
+    param: { action: postRegisterTwitter }
+    name_prefix:  api_
+    requirements:
+      _method: POST
+
+api_post_register_facebook:
+    type: rest
+    resource:     "ErmineAppUserBundle:UserRest"
+    param: { action: postRegisterFacebook }
+    name_prefix:  api_
+    requirements:
+      _methods: "POST|OPTIONS"
+
+api_get_me:
+    type: rest
+    resource:     "ErmineAppUserBundle:UserRest"
+    param: { action: getMe }
+    name_prefix:  api_
+
+
+
+
+
+

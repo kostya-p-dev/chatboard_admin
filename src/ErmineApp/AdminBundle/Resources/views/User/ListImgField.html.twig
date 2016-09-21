@@ -1,0 +1,12 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+        <div style="text-align: center;">
+            {% for img in object.userfiles %}
+                {% if img.fileorder == 1 %}
+                    <img src="{{img.path|replace({'200_200': "25_25"}) }}" width="25" height="25"/>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+{% endblock %}

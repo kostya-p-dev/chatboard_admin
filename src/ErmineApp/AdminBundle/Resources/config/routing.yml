@@ -1,0 +1,3 @@
+ermine_app_admin_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ErmineAppAdminBundle:Default:index }

@@ -1,0 +1,5 @@
+services:
+    ermine_appsocnets_manager:
+        class: ErmineApp\SocialNetsBundle\Service\SocNetManager
+        arguments:
+            - @service_container

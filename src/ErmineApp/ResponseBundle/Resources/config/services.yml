@@ -1,0 +1,15 @@
+services:
+#    ermine_app_response.example:
+#        class: ErmineApp\ResponseBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    rate_limit_listener:
+        class: ErmineApp\ResponseBundle\EventListener\RateLimitHeadersListener
+        tags:
+           - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+    kernel.listener.yourlisener:
+        class: ErmineApp\ResponseBundle\EventListener\YourExceptionListener
+        tags:
+           - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+        arguments: [ @app_request_manager_service ]

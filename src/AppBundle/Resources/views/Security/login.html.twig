@@ -1,0 +1,83 @@
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData) }}</div>
+{% endif %}
+{#<div class="box">#}
+    <div class="dropdown-menu multi-column dropdown-add" style="width: 280px;">
+        <img src="{{ asset('bundles/ermineappuser/images/logo.png') }} " style="width:90%; margin-bottom:5px;">
+
+        <form action="{{ path('login_check') }}" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="_password" />
+
+            <a href="#">I forgot my password</a>
+
+            <button type="submit">login</button>
+        </form>
+    </div>
+{#</div>#}
+<style type="text/css">
+    .dropdown-menu {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        z-index: 2300;
+    }
+    .dropdown-menu {
+        background-clip: padding-box;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+        font-size: 14px;
+        list-style: outside none none;
+        padding: 5px 0;
+        z-index: 1000;
+        width: 50%;
+        margin: 10% auto;
+        text-align: center;
+        font-family: "Source Sans Pro",sans-serif;
+        font-size: 13px;
+        color: #333333;
+    }
+    input {
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        color: #555;
+        display: block;
+        font-size: 14px;
+        height: 34px;
+        width: 85%;
+        line-height: 1.42857;
+        padding: 6px 12px;
+        transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+        margin: 0 auto;
+    }
+    button {
+        background-color: #fafafa;
+        /*border-color: #ddd;*/
+        color: #666;
+        border-radius: 4px;
+        box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.09) inset;
+        font-weight: 500;
+        -moz-user-select: none;
+        background-image: none;
+        border: 1px solid  #ccc;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+        line-height: 1.42857;
+        margin:10px 0 0 0;
+        padding: 6px 12px;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+    label {
+        text-align: left;
+
+    }
+</style>

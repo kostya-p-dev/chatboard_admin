@@ -1,0 +1,78 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends 'SonataAdminBundle:CRUD:base_show.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/appadmin/css/tubs.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/appadmin/js/tubs.js') }}"></script>
+{% endblock %}
+
+{% block tab_menu_navbar_header %}
+
+    <div class="navbar-header">
+        <span class="navbar-brand">Show</span>
+    </div>
+
+{% endblock %}
+
+{% block show %}
+    <div class="sonata-ba-view">
+
+        {{ sonata_block_render_event('sonata.admin.show.top', { 'admin': admin, 'object': object }) }}
+
+        {% for name, view_group in admin.showgroups %}
+
+                {% if   admin.classnameLabel == 'User' %}
+                    {# USER #}
+                    {{ include('ErmineAppAdminBundle:User:tubs.html.twig') }}
+                {% elseif admin.classnameLabel == 'Activities' %}
+                    {# ACTIVITIES #}
+                    {{ include('ErmineAppAdminBundle:Activities:tubs.html.twig') }}
+                {% else %}
+                    <table class="table table-bordered">
+                        {% if name %}
+                            <thead>
+                            {% block show_title %}
+                                <tr class="sonata-ba-view-title">
+                                    <th colspan="2">
+                                        {{ 'Show' }}
+                                        {{ admin.trans(name) }}
+                                    </th>
+                                </tr>
+                            {% endblock %}
+                            </thead>
+                        {% endif %}
+
+                        <tbody>
+                        {% for field_name in view_group.fields %}
+                            {% block show_field %}
+                                <tr class="sonata-ba-view-container">
+                                    {% if elements[field_name] is defined %}
+                                        {{ elements[field_name]|render_view_element(object) }}
+                                    {% endif %}
+                                </tr>
+                            {% endblock %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+
+        {% endfor %}
+
+        {{ sonata_block_render_event('sonata.admin.show.bottom', { 'admin': admin, 'object': object }) }}
+
+    </div>
+{% endblock %}                                                                                                                                                                                                                                                                                                                                                                                                  

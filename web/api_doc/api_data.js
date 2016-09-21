@@ -1,0 +1,185 @@
+define({ "api": [
+  {
+    "version": "0.1.0",
+    "type": "post",
+    "url": "/api/logins/passes",
+    "title": "Login password",
+    "name": "LoginPassword",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pass",
+            "description": "<p>Password.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Login.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\nJSON:\n        {\n            \"restToken\": \"423006c421b...\",\n                \"user\": {\n                    \"uId\": 10,\n                    \"name\": \"Kostya Prosto\",\n                    \"email\": \"\"\n                },\n            \"errorCode\": \"0\",\n            \"success\": \"1\"\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "http://127.0.0.1:8000/api/logins/passes"
+      }
+    ],
+    "filename": "src/ErmineApp/UserBundle/Controller/UserRestController.php",
+    "groupTitle": "Users"
+  },
+  {
+    "version": "0.1.0",
+    "type": "post",
+    "url": "/api/registers/facebooks",
+    "title": "Registration Facebook",
+    "name": "RegisterFacebook",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "facebookToken",
+            "description": "<p>Facebook Token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "facebookId",
+            "description": "<p>Facebook ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\nJSON:\n     {\n        \"restToken\": \"423006c421b...\",\n        \"user\": {\n            \"uId\": 10,\n            \"fbId\": \"149332...\",\n            \"name\": \"Kostya Prosto\",\n            \"email\": \"\"\n        },\n        \"errorCode\": \"0\",\n        \"success\": \"1\"\n     }",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "http://whrzat.gotests.com/"
+      }
+    ],
+    "filename": "src/ErmineApp/UserBundle/Controller/UserRestController.php",
+    "groupTitle": "Users"
+  },
+  {
+    "version": "0.1.0",
+    "type": "post",
+    "url": "/api/registers/passes",
+    "title": "Registration password",
+    "name": "RegisterPassword",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pass",
+            "description": "<p>Password.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Login.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\nJSON:\n        {\n            \"restToken\": \"423006c421b...\",\n                \"user\": {\n                    \"uId\": 10,\n                    \"name\": \"Kostya Prosto\",\n                    \"email\": \"\"\n                },\n            \"errorCode\": \"0\",\n            \"success\": \"1\"\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "http://127.0.0.1:8000/api/registers/passes"
+      }
+    ],
+    "filename": "src/ErmineApp/UserBundle/Controller/UserRestController.php",
+    "groupTitle": "Users"
+  },
+  {
+    "version": "0.1.0",
+    "type": "post",
+    "url": "/api/registers/twitters",
+    "title": "Registration Twitter",
+    "name": "RegisterTwitter",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "twitterToken",
+            "description": "<p>Twitter Token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "twitterId",
+            "description": "<p>Twitter ID.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "twitterSecret",
+            "description": "<p>Twitter Secret.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\nJSON:\n        {\n            \"restToken\": \"423006c421b...\",\n            \"user\": {\n                \"uId\": 10,\n                \"fbId\": \"149332...\",\n                \"name\": \"Kostya Prosto\",\n                \"email\": \"\"\n            },\n            \"errorCode\": \"0\",\n            \"success\": \"1\"\n        }",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "http://whrzat.gotests.com/"
+      }
+    ],
+    "filename": "src/ErmineApp/UserBundle/Controller/UserRestController.php",
+    "groupTitle": "Users"
+  }
+] });

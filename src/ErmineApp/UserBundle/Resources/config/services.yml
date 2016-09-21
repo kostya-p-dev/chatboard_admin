@@ -1,0 +1,41 @@
+services:
+
+# REPOSITORIES
+
+    app_user_repository:
+        class: ErmineApp\UserBundle\Entity\UserRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+          - 'ErmineAppUserBundle:User'
+        calls:
+          - [ setContainer, [ @service_container ] ]
+
+    app_session_repository:
+        class: ErmineApp\UserBundle\Entity\SessionRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+          - 'ErmineAppUserBundle:Session'
+
+    app_user_files_repository:
+        class: ErmineApp\UserBundle\Entity\UserFilesRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+          - 'ErmineAppUserBundle:UserFiles'
+
+# MANAGERS
+
+    app_request_manager_service:
+        class: ErmineApp\UserBundle\Service\RequestManager
+        arguments: ~
+
+    app_user_manager_service:
+        class: ErmineApp\UserBundle\Service\UserManager
+        arguments:
+            - @app_user_repository
+            - @app_session_repository
+            - @service_container
+
+# SERVICES

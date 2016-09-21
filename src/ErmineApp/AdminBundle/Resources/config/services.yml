@@ -1,0 +1,27 @@
+services:
+    admin.twig_extension:
+        class: ErmineApp\AdminBundle\Twig\AdminExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+        arguments:
+            - @app_user_repository
+            - @app_user_manager_service
+
+    sonata.admin.users:
+        class: ErmineApp\UserBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Users", label: "Users" }
+        arguments: [~, ErmineApp\UserBundle\Entity\User, SonataAdminBundle:CRUD]
+
+        calls:
+            - [ setTranslationDomain, [ErmineAppUserBundle]]
+
+    sonata.admin.managers:
+        class: ErmineApp\UserBundle\Admin\AdministratorsAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Users", label: "Administrators" }
+        arguments: [~, ErmineApp\UserBundle\Entity\User, SonataAdminBundle:CRUD]
+
+        calls:
+            - [ setTranslationDomain, [ErmineAppUserBundle]]

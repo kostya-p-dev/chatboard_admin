@@ -1,0 +1,3 @@
+ermine_app_response_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ErmineAppResponseBundle:Default:index }

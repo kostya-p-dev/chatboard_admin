@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity repository-class="ErmineApp\UserBundle\Entity\UserRepository" name="ErmineApp\UserBundle\Entity\User" >
+        <indexes>
+            <index name="fbid_idx" columns="fbid"/>
+        </indexes>
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="username" type="string" column="username" length="255" nullable="true"/>
+        <field name="password" type="string" column="password" length="255" nullable="true"/>
+        <field name="fbid" type="string" column="fbid" length="40" nullable="true"/>
+        <field name="twid" type="string" column="twid" length="40" nullable="true"/>
+        <field name="goid" type="string" column="goid" length="40" nullable="true"/>
+        <field name="email" type="string" column="email" length="255" nullable="true"/>
+        <field name="role" type="string" column="role" length="100" />
+        <field name="name" type="string" column="name" length="50" />
+        <field name="age" type="string" column="age" length="50" nullable="true"/>
+        <field name="img" type="string" column="img" length="255" nullable="true"/>
+        <field name="primaryInterestsImg" type="string" column="primary_interests_img" length="255" nullable="true"/>
+        <field name="interestsStr" type="string" column="interests_str" length="255" nullable="true"/>
+        <field name="about" type="string" column="about" length="320" nullable="true"/>
+        <field name="created" type="datetime" column="created"/>
+        <field name="access" type="integer" column="access" nullable="true"/>
+        <field name="login" type="integer" column="login" nullable="true"/>
+        <field name="status" type="boolean" column="status" nullable="true"/>
+        <field name="gender" type="boolean" column="gender" nullable="true"/>
+        <field name="lanStatus" type="boolean" column="lan_status" nullable="true"/>
+        <field name="isRegister" type="boolean" column="isRegister" nullable="true"/>
+        <field name="timezone" type="string" column="timezone" length="6" nullable="true"/>
+        <field name="isOnline" type="boolean"  nullable="true">
+            <options>
+                <option name="comment">Is User Online</option>
+                <option name="default">0</option>
+            </options>
+        </field>
+        <field name="phone" type="string" column="phone" length="20" nullable="true"/>
+
+        <one-to-many field="sessions" target-entity="ErmineApp\UserBundle\Entity\Session" mapped-by="user">
+            <cascade>
+                <cascade-remove />
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="userfiles" target-entity="ErmineApp\UserBundle\Entity\UserFiles" mapped-by="user">
+            <cascade>
+                <cascade-remove />
+                <cascade-persist />
+            </cascade>
+        </one-to-many>
+
+    </entity>
+</doctrine-mapping>

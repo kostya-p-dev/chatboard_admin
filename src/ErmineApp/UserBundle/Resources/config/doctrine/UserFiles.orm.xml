@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="ErmineApp\UserBundle\Entity\UserFilesRepository" name="ErmineApp\UserBundle\Entity\UserFiles" >
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+      <!-- 1=Primary,0=secondary -->
+    <field name="fileorder" type="integer" column="fileorder"/>
+    <field name="path" type="string" column="path" length="255" nullable="true"/>
+    <field name="name" type="string" column="name" length="255" nullable="true"/>
+    <field name="link" type="string" column="link" length="255" nullable="true"/>
+    <field name="type" type="string" column="type" length="20" nullable="true"/>
+    <many-to-one field="user" target-entity="ErmineApp\UserBundle\Entity\User"/>
+  </entity>
+</doctrine-mapping>
