@@ -4,8 +4,8 @@
 /app/cache/*
 /app/config/parameters.yml
 /app/config/parameters_chat.yml
-!/app/config/parameters.yml.dist
-!/app/config/config.yml
+!app/config/parameters.yml.dist
+!app/config/config.yml
 !/app/config/config_dev.yml
 !/app/config/routing.yml
 !/app/config/security.yml
