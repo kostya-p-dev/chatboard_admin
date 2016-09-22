@@ -1,0 +1,4 @@
+services:
+#    ermine_app_jabber.example:
+#        class: ErmineApp\JabberBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ErmineApp\JabberBundle\Entity\AppChatInvite" table="app_chat_invite">
+    <indexes>
+      <index name="auth_data_auth_data_id_fk" columns="auth_data_id"/>
+      <index name="chat_chat_id_fk" columns="chat_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="chat" target-entity="Chat">
+      <join-columns>
+        <join-column name="chat_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="authData" target-entity="AuthData">
+      <join-columns>
+        <join-column name="auth_data_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

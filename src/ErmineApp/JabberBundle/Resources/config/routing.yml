@@ -1,0 +1,3 @@
+ermine_app_jabber_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ErmineAppJabberBundle:Default:index }

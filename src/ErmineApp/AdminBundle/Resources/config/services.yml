@@ -8,20 +8,39 @@ services:
             - @app_user_repository
             - @app_user_manager_service
 
-    sonata.admin.users:
-        class: ErmineApp\UserBundle\Admin\UserAdmin
+
+#    sonata.admin.managers:
+#        class: ErmineApp\UserBundle\Admin\AdministratorsAdmin
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: "Users", label: "Administrators" }
+#        arguments: [~, ErmineApp\UserBundle\Entity\User, SonataAdminBundle:CRUD]
+#
+#        calls:
+#            - [ setTranslationDomain, [ErmineAppUserBundle]]
+
+    sonata.admin.chatbourd.users:
+        class: ErmineApp\JabberBundle\Admin\ChatUserAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Users", label: "Users" }
-        arguments: [~, ErmineApp\UserBundle\Entity\User, SonataAdminBundle:CRUD]
+        arguments: [~, ErmineApp\JabberBundle\Entity\AuthData, SonataAdminBundle:CRUD]
 
         calls:
-            - [ setTranslationDomain, [ErmineAppUserBundle]]
+            - [ setTranslationDomain, [ErmineAppJabberBundle]]
 
-    sonata.admin.managers:
-        class: ErmineApp\UserBundle\Admin\AdministratorsAdmin
+    sonata.admin.chatbourd.chats:
+        class: ErmineApp\JabberBundle\Admin\ChatAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Users", label: "Administrators" }
-        arguments: [~, ErmineApp\UserBundle\Entity\User, SonataAdminBundle:CRUD]
+            - { name: sonata.admin, manager_type: orm, group: "Chats", label: "Chats" }
+        arguments: [~, ErmineApp\JabberBundle\Entity\Chat, SonataAdminBundle:CRUD]
 
         calls:
-            - [ setTranslationDomain, [ErmineAppUserBundle]]
+            - [ setTranslationDomain, [ErmineAppJabberBundle]]
+
+    sonata.admin.chatbourd.messages:
+        class: ErmineApp\JabberBundle\Admin\OfmessagearchiveAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Chats", label: "Messages" }
+        arguments: [~, ErmineApp\JabberBundle\Entity\Ofmessagearchive, SonataAdminBundle:CRUD]
+
+        calls:
+            - [ setTranslationDomain, [ErmineAppJabberBundle]]

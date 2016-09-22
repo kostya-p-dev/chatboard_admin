@@ -81,7 +81,7 @@ doctrine:
             jabber:
                 connection: jabber
                 mappings:
-#                    AppJabberBundle: ~
+                    ErmineAppJabberBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:

@@ -49,6 +49,7 @@ class AppKernel extends Kernel
             new ErmineApp\FilesBundle\ErmineAppFilesBundle(),
             new ErmineApp\SocialNetsBundle\ErmineAppSocialNetsBundle(),
             new ErmineApp\ResponseBundle\ErmineAppResponseBundle(),
+            new ErmineApp\JabberBundle\ErmineAppJabberBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -21,9 +21,11 @@ class DefaultController extends Controller
      * @Route("/", name="home")
      */
     public function indexAction()
-    {
+    {die('tut');
         if (!$this->getUser() || $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
             return $this->redirect($this->generateUrl('sonata_admin_dashboard'));
+        }else{
+            return $this->redirect($this->generateUrl('login_route'));
         }
         throw $this->createNotFoundException('Not Found');
     }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ErmineApp\JabberBundle\Entity\Chat" table="chat">
+    <indexes>
+      <index name="i_jid" columns="jid"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="255" nullable="false"/>
+    <field name="jid" type="string" column="jid" length="64" nullable="false"/>
+    <field name="isPublic" type="boolean" column="is_public" nullable="true"/>
+    <field name="avatar" type="string" column="avatar" length="255" nullable="true"/>
+    <field name="avtor" type="string" column="avtor" length="255" nullable="true"/>
+  </entity>
+</doctrine-mapping>

@@ -18,19 +18,8 @@ ermine_app_user:
     resource: "@ErmineAppUserBundle/Resources/config/routing.yml"
     prefix:   /
 
-#app_cron_task:
-#    resource: "@AppCronTaskBundle/Resources/config/routing.yml"
-#    prefix:   /
 
 
-#
-#defoult:
-#    resource: "@ErmineAppUserBundle/Controller/"
-#    type:     rest
-#
-#ajax_admin:
-#    resource: "@AppAdminBundle/Controller/"
-#    type:     annotation
 
 app:
     resource: "@AppBundle/Controller/"

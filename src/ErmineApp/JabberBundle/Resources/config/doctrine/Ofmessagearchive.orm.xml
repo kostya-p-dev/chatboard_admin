@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="ErmineApp\JabberBundle\Entity\OfmessagearchiveRepository" name="ErmineApp\JabberBundle\Entity\Ofmessagearchive" table="ofMessageArchive">
+    <indexes>
+      <index name="ofMessageArchive_con_idx" columns="conversationID"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="id_UNIQUE" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="bigint" column="messageID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="conversationid" type="bigint" column="conversationID" nullable="false"/>
+    <field name="fromjid" type="string" column="fromJID" length="255" nullable="false"/>
+    <field name="fromjidresource" type="string" column="fromJIDResource" length="100" nullable="true"/>
+    <field name="tojid" type="string" column="toJID" length="255" nullable="false"/>
+    <field name="tojidresource" type="string" column="toJIDResource" length="100" nullable="true"/>
+    <field name="sentdate" type="bigint" column="sentDate" nullable="false"/>
+    <field name="body" type="text" column="body" nullable="true"/>
+  </entity>
+</doctrine-mapping>
